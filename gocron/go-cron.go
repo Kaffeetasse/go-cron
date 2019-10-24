@@ -97,7 +97,13 @@ func Create(schedule string, command string, args []string) (cr *cron.Cron, wgr 
 
 	wg := &sync.WaitGroup{}
 
-	c := cron.New()
+	c := cron.New(
+		cron.WithParser(
+			cron.NewParser(
+				cron.SecondOptional | cron.Minute | cron.Hour | cron.Dom | cron.Month | cron.Dow | cron.Descriptor,
+			),
+		),
+	)
 	Current_state = CurrentState{map[string]*LastRun{}, &LastRun{}, schedule}
 	log.Println("new cron:", schedule)
 
