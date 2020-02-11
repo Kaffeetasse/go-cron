@@ -1,3 +1,3 @@
 #!/bin/bash
 
-go run ./main.go "* * * * * *" /bin/bash -c "echo 1;"
+go run ./main.go -s "* * * * *" -p 8080 -- /bin/bash -c "echo 1;"

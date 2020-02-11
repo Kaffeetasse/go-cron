@@ -1,12 +1,12 @@
 go-cron
 =========
 
-Simple golang wrapper over `github.com/robfig/cron` and `os/exec` as a cron replacement. 
+Simple golang wrapper over `github.com/robfig/cron` and `os/exec` as a cron replacement.
 Additionally the application opens a HTTP port that can be used as a healthcheck.
 
 ## usage
 
-`go-cron -s "* * * * * *" -p 8080 -- /bin/bash -c "echo 1"`
+`go-cron -s "* * * * *" -p 8080 -- /bin/bash -c "echo 1"`
 
 Check the healthcheck:
 
