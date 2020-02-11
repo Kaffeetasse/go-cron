@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	gocron "github.com/odise/go-cron"
+	"github.com/prodrigestivill/go-cron/gocron"
 	"log"
 	"os"
 	"os/signal"
@@ -10,6 +10,7 @@ import (
 )
 
 var build string
+var version string
 
 func main() {
 	flagArgs, execArgs := splitArgs()
@@ -29,7 +30,7 @@ func main() {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
-	log.Println("Running version:", build)
+	log.Println("Running version:", version)
 
 	c, wg := gocron.Create(*schedule, execArgs[0], execArgs[1:len(execArgs)])
 

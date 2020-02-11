@@ -1,10 +1,12 @@
-This code is based on the work of Michał Rączka and forked from the 
-michaloo/go-cron Github project. All extensions were made under same 
-MIT license.
+This code is based on the work of Michał Rączka and Jan Nabbefeld
+from their michaloo/go-cron and odise/go-cron Github projects respectively.
+All extensions were made under same MIT license.
 
 The MIT License (MIT)
 
+Copyright (c) 2014 Michał Rączka
 Copyright (c) 2014 Jan Nabbefeld
+Copyright (c) 2020 Pau Rodriguez-Estivill
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
