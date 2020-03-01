@@ -8,7 +8,8 @@ MAIN_GO="main.go"
 DEPS="github.com/robfig/cron"
 
 cd $(dirname $0)
-mkdir -p dist
+rm -vfR dist
+mkdir -vp dist
 
 for TARGET in $TARGETS; do
 	GOOS=${TARGET%-*} GOARCH=${TARGET#*-} go build -o dist/go-cron-$TARGET -ldflags "-X main.build=$BUILD -X main.version=$VERSION" "$MAIN_GO"
