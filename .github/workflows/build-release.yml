@@ -1,0 +1,162 @@
+name: Build release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Prepare environment
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Build project
+        run: ./build.sh
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload asset for linux-amd64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-amd64.gz
+          asset_name: go-cron-linux-amd64.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for linux-arm64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-arm64.gz
+          asset_name: go-cron-linux-arm64.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for linux-arm
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-arm.gz
+          asset_name: go-cron-linux-arm.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for linux-386
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-386.gz
+          asset_name: go-cron-linux-386.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for linux-s390x
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-s390x.gz
+          asset_name: go-cron-linux-s390x.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for linux-ppc64le
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-ppc64le.gz
+          asset_name: go-cron-linux-ppc64le.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for darwin-amd64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-darwin-amd64.gz
+          asset_name: go-cron-darwin-amd64.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for darwin-arm64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-darwin-arm64.gz
+          asset_name: go-cron-darwin-arm64.gz
+          asset_content_type: application/gzip
+      - name: Upload asset for windows-amd64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-windows-amd64.gz
+          asset_name: go-cron-windows-amd64.gz
+          asset_content_type: application/gzip
+      - name: Upload static asset for linux-amd64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-amd64-static.gz
+          asset_name: go-cron-linux-amd64-static.gz
+          asset_content_type: application/gzip
+      - name: Upload static asset for linux-arm64
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-arm64-static.gz
+          asset_name: go-cron-linux-arm64-static.gz
+          asset_content_type: application/gzip
+      - name: Upload static asset for linux-arm
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-arm-static.gz
+          asset_name: go-cron-linux-arm-static.gz
+          asset_content_type: application/gzip
+      - name: Upload static asset for linux-386
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-386-static.gz
+          asset_name: go-cron-linux-386-static.gz
+          asset_content_type: application/gzip
+      - name: Upload static asset for linux-s390x
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-s390x-static.gz
+          asset_name: go-cron-linux-s390x-static.gz
+          asset_content_type: application/gzip
+      - name: Upload static asset for linux-ppc64le
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/go-cron-linux-ppc64le-static.gz
+          asset_name: go-cron-linux-ppc64le-static.gz
+          asset_content_type: application/gzip

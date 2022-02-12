@@ -1,0 +1,2 @@
+TARGETS="linux-amd64 linux-arm64 linux-arm linux-386 linux-s390x linux-ppc64le darwin-amd64 darwin-arm64 windows-amd64"
+STATIC_TARGETS="linux-amd64 linux-arm64 linux-arm linux-386 linux-s390x linux-ppc64le"
