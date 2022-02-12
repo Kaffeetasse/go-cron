@@ -7,7 +7,7 @@ VERSION="$GITHUB_REF_NAME"
 MAIN_GO="main.go"
 DEPS="github.com/robfig/cron"
 
-cd $(dirname $0)
+cd $(dirname $0)/..
 rm -vfR dist
 mkdir -vp dist
 
@@ -16,7 +16,7 @@ if [ -z "$BUILD" -o -z "$VERSION" ]; then
 	VERSION=`git describe --tags`
 fi
 
-source ./config.inc.sh
+source ./scripts/config.inc.sh
 
 for TARGET in $TARGETS; do
 	GOOS=${TARGET%-*} GOARCH=${TARGET#*-} go build -o dist/go-cron-$TARGET -ldflags "-X main.build=$BUILD -X main.version=$VERSION" "$MAIN_GO"

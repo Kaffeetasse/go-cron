@@ -2,8 +2,8 @@
 
 set -e
 
-cd $(dirname $0)
-source ./config.inc.sh
+cd $(dirname $0)/..
+source ./scripts/config.inc.sh
 WORKFLOW_FILE=".github/workflows/build-release.yml"
 
 cat > "$WORKFLOW_FILE" << EOF
@@ -23,7 +23,7 @@ jobs:
         with:
           go-version: '^1.17.7'
       - name: Build project
-        run: ./build.sh
+        run: ./scripts/build.sh
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
