@@ -20,6 +20,7 @@ func main() {
 		help     = flag.Bool("h", false, "display usage")
 		port     = flag.String("p", "18080", "bind healthcheck to a specific port, set to 0 to not open HTTP port at all")
 		schedule = flag.String("s", "* * * * *", "schedule the task the cron style")
+		initrun  = flag.Bool("i", false, "run one first time on start after initialization")
 	)
 
 	flag.Parse()
@@ -37,6 +38,9 @@ func main() {
 	go gocron.Start(c)
 	if *port != "0" {
 		go gocron.Http_server(*port)
+	}
+	if *initrun {
+		go gocron.RunJobs(c)
 	}
 
 	ch := make(chan os.Signal, 1)

@@ -128,3 +128,9 @@ func Stop(c *cron.Cron, wg *sync.WaitGroup) {
 	log.Println("Exiting")
 	os.Exit(0)
 }
+
+func RunJobs(c *cron.Cron) {
+	for _, e := range c.Entries() {
+		e.Job.Run()
+	}
+}
